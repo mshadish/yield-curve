@@ -47,7 +47,7 @@ function generateYieldCurve(data) {
 
 
 	// starting date here
-	var date = "2018";
+	var date = 'Today';
 
 
 	var x = d3.scale.linear()
@@ -175,7 +175,7 @@ function generateYieldCurve(data) {
 
 	        // define the annual scaling for user speicifcation
 	        var yearScale = d3.scale.linear()
-	            .domain([1990, 2018])
+	            .domain([1990, 2019])
 	            .range([box.x + 10, box.x + box.width - 10])
 	            .clamp(true);
 
@@ -198,6 +198,12 @@ function generateYieldCurve(data) {
 	        }
 	    }
 
+
+	    // create a mapping to convert next year's date to the "Today" value
+	    // as it is represented in the treasury data
+	    var mapping = {2019: 'Today'};
+
+
 	    // define the function to change year on mouseover
 	    // this is used in the mouseover transparent box over the year display
 	    // and allows the user to manipulate the year we're interested in
@@ -205,10 +211,12 @@ function generateYieldCurve(data) {
 	    	// this is where the meat is
 	    	// first, we round the year and change the global date variable...
 	    	date = Math.round(year);
+	    	// check the hash lookup
+	    	if (mapping.hasOwnProperty(date)) {date = mapping[date]; }
 	    	// ...then call the line attribute to re-plot
 	    	svg.selectAll(".line").attr("d", line);
 	        // change the year that displays
-	        label.text(Math.round(year));
+	        label.text(date);
 	    }
 
 
