@@ -35,7 +35,7 @@ if [ "$((old_line_count))" -lt "$((new_line_count))" ]
 		git add treasury_data_norm.csv;
 		git add treasury_data_historical.csv;
 		# commit 
-		git commit --dry-run -m 'Data update `date`';
+		git commit -m 'Data update `date`';
 		# ...and push
 		git push;
 fi;
