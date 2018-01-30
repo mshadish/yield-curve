@@ -111,6 +111,11 @@ historical_df = pd.read_csv('treasury_data_norm.csv')
 historical_df['dt'] = historical_df['date_string'].apply(dateutil.parser.parse)
 # ...and combine with the new data
 combined = newdf.append(historical_df).drop_duplicates(['dt','term'])
+# sort it for consistency
+combined = combined.sort_values(['dt','term'])
+# write it out as a new file
+# which we'll compare against the original norm file to see if a commit/push is necessary
+combined[['date_string','yield','term']].to_csv('treasury_data_norm.csv', index=False)
 
 
 
