@@ -14,6 +14,7 @@ and append it to our dataset of treasury yields
 # utility imports
 import re
 import dateutil
+import datetime
 # imports to get and handle the XML data
 import requests
 import xml.etree.cElementTree as xml
@@ -37,10 +38,13 @@ TERM_CONVERSION = {
     'BC_7YEAR': 7
 }
 
-
+### print out the date
+print datetime.datetime.now().strftime('%Y-%m-%d')
 
 # treasury.gov XML url defined here
-TREASURY_URL = 'https://www.treasury.gov/resource-center/data-chart-center/interest-rates/pages/XmlView.aspx?data=yieldyear&year=2018'
+# will need to define current year
+current_year = datetime.datetime.now().strftime('%Y')
+TREASURY_URL = 'https://www.treasury.gov/resource-center/data-chart-center/interest-rates/pages/XmlView.aspx?data=yieldyear&year={0}'.format(current_year)
 
 print 'Requesting treasury data...'
 # grab the data from treasury.gov...
