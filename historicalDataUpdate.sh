@@ -37,5 +37,6 @@ if [ "$((old_line_count))" -lt "$((new_line_count))" ]
 		# commit 
 		git commit -m "Data update `date`";
 		# ...and push
-		git push;
+		creds=`cat .creds`;
+		git push https://${creds}@github.com/mshadish/yield-curve.git master;
 fi;
