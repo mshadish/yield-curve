@@ -175,7 +175,7 @@ function generateYieldCurve(data) {
 
 	        // define the annual scaling for user speicifcation
 	        var yearScale = d3.scale.linear()
-	            .domain([1990, 2019])
+	            .domain([1990, 2020])
 	            .range([box.x + 10, box.x + box.width - 10])
 	            .clamp(true);
 
@@ -201,7 +201,7 @@ function generateYieldCurve(data) {
 
 	    // create a mapping to convert next year's date to the "Today" value
 	    // as it is represented in the treasury data
-	    var mapping = {2019: 'Today'};
+	    var mapping = {2020: 'Today'};
 
 
 	    // define the function to change year on mouseover
